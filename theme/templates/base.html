@@ -2,14 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Django Tailwind</title>
+    <title>k-world</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap"
+      rel="stylesheet"
+    />
     {% tailwind_css %}
   </head>
 
-  <body class="bg-grey-lightest font-serif leading-normal tracking-normal">
+  <body
+    class="bg-gray-600 leading-normal tracking-normal"
+    style="font-family: 'Noto Sans KR', sans-serif"
+  >
     <header
       class="
         sticky
@@ -19,21 +28,34 @@
         w-full
         max-w-8xl
         mx-auto
-        bg-purple-500
+        bg-gray-700
         flex
         justify-center
       "
     >
-      <div class="p-4 flex justify-between w-11/12">
-        <span class="text-xl">ケイヲーールド</span>
+      <div class="p-5 flex justify-between items-center w-9/12">
+        <span class="text-xl text-gray-300">k-world</span>
         <div class="justify-between">
-          <span class="text-xl">login</span>
-          <span class="text-xl ml-4">signup</span>
+          <a class="text-l text-gray-300 rounded-md cursor-pointer p-2 mr-1">
+            login
+          </a>
+          <a
+            class="
+              text-l text-gray-300
+              bg-blue-500
+              rounded-md
+              cursor-pointer
+              p-2
+              ml-1
+            "
+          >
+            signup
+          </a>
         </div>
       </div>
     </header>
     <div class="container mx-auto">
-      <section class="flex items-center justify-center h-screen">
+      <section class="flex items-center justify-center h-auto mt-20">
         {% block content %} {% endblock content %}
       </section>
     </div>
