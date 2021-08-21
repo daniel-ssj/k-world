@@ -1,0 +1,26 @@
+{% extends "base.html" %} {%block content%}
+
+<div>
+  <form action="" method="POST"" class=" flex flex-col">
+    {% csrf_token %}
+    <textarea class="rounded-md bg-gray-400" name="thought" placeholder="what are you thinking about" cols="50">
+    </textarea>
+    <button class="bg-blue-500 hover:bg-blue-600 rounded-md text-gray-300 w-2/12 p-2 mt-1">publish</button>
+  </form>
+
+  {% for thought in thoughts %}
+    <div class="flex justify-around bg-gray-300 p-1 mt-2">
+      <h1>{{thought.thought}}</h1>
+      <span>{{thought.get_time_ago}}</span>      
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  textarea {
+    min-height: 42px;
+    height: 42px;
+  }
+</style>
+
+{%endblock%}
