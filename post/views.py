@@ -1,6 +1,7 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 
+from django.contrib.auth.decorators import login_required
 from post.models import Thought
 
 
@@ -12,6 +13,8 @@ def latest_thoughts_view(request):
     }
     return render(request, 'post/thoughts.html', context)
 
+
+@login_required
 def thought_create_view(request):
     thoughts = Thought.objects.all().order_by('-created_at')
 

@@ -3,8 +3,7 @@
 <div class="w-5/12">
   <form method="POST"" class=" flex flex-col">
     {% csrf_token %}
-    <textarea class="rounded-md bg-gray-400" name="thought" placeholder="what are you thinking about" cols="50">
-    </textarea>
+    <textarea class="rounded-md bg-gray-400" name="thought" placeholder="what are you thinking about" cols="50"></textarea>
     <button class="bg-blue-500 hover:bg-blue-600 rounded-md text-gray-300 w-2/12 p-2 mt-1">publish</button>
   </form>
 
@@ -26,6 +25,7 @@
 <style>
   textarea {
     min-height: 42px;
+    max-height: 342px;
     height: 42px;
   }
 </style>
