@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from post.models import Thought
 
@@ -13,7 +13,7 @@ def latest_thoughts_view(request):
     return render(request, 'post/thoughts.html', context)
 
 def thought_create_view(request):
-    thoughts = Thought.objects.all()
+    thoughts = Thought.objects.all().order_by('-created_at')
 
     print(request.method == 'POST')
 
@@ -21,7 +21,7 @@ def thought_create_view(request):
         thought = request.POST.get('thought')
         Thought.objects.create(thought=thought)
 
-        return HttpResponseRedirect("http://127.0.0.1:8000/")
+        return redirect("/")
     
     context = {
         'thoughts': thoughts

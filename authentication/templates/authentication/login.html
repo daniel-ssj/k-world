@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <form method="POST" class="flex flex-col w-10/12">
+    {% csrf_token %}
+    <input
+      type="text"
+      name="username"
+      class="bg-gray-400 text-gray-300 rounded-l"
+      placeholder="username"
+    />
+    <input
+      type="password"
+      name="password"
+      class="bg-gray-400 text-gray-300 rounded-l mt-1"
+      placeholder="password"
+    />
+    {% if error %}
+    <span class="text-red-500">{{ error }}</span>
+    {% endif %}
+    <button
+      class="
+        bg-blue-500
+        hover:bg-blue-600
+        rounded-md
+        text-gray-300
+        w-3/12
+        p-2
+        mt-1
+      "
+    >
+      login
+    </button>
+  </form>
+</div>
+{% endblock %}
