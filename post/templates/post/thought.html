@@ -1,5 +1,5 @@
 <div
-  class="bg-gray-300 p-1 mt-2 rounded-l"
+  class="bg-gray-300 p-1 mt-2 mb-2 rounded-l"
   {% if thoughts.has_next and forloop.last %}
   hx-get="/?page={{ thoughts.next_page_number }}"
   hx-trigger="revealed"

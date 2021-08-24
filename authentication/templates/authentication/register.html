@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <form method="POST" class="flex flex-col w-10/12">
+    {% csrf_token %} {{ form }}
+    <button
+      class="
+        bg-blue-500
+        hover:bg-blue-600
+        rounded-md
+        text-gray-300
+        w-3/12
+        p-2
+        mt-1
+      "
+    >
+      signup
+    </button>
+  </form>
+</div>
+
+<style>
+  ul {
+    display: none;
+  }
+</style>
+{% endblock %}
