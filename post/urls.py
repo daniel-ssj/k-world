@@ -5,5 +5,5 @@ from . import views
 app_name = 'post'
 
 urlpatterns = [
-    path('', views.thought_create_view, name='posts')
+    path('', views.index_view, name='index'),
 ]
