@@ -12,7 +12,9 @@
 
   function stateHandle() {
     console.log("event fired")
-    if (document.querySelector(".textarea").value.trim() !== "") {
+    if (document.querySelector(".textarea").value.trim() === "") {
+      button.setAttribute("disabled", "disabled")
+    } else {
       button.removeAttribute("disabled")
     }
   }
