@@ -5,15 +5,14 @@ from django.shortcuts import redirect, render
 from post.models import Thought
 
 
+@login_required
 def thought_create_view(request):
     if(request.method == 'POST'):
-        thought = request.POST.get('thought')
-        
-        Thought.objects.create(thought=thought)
+        thought: str = request.POST.get('thought')
+
+        Thought.objects.create(thought=thought, author=request.user)
 
         return redirect("/")
-
-    return render(request, 'post/create.html', {})
 
 
 @login_required

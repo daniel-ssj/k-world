@@ -1,8 +1,22 @@
 <form action="{% url 'post:create_thought' %}" method="POST"" class=" flex flex-col">
     {% csrf_token %}
-    <textarea class="rounded-md bg-gray-400" name="thought" placeholder="what are you thinking about" cols="50"></textarea>
-    <button class="bg-blue-500 hover:bg-blue-600 rounded-md text-gray-300 w-2/12 p-2 mt-1">publish</button>
-  </form>
+    <textarea class="textarea rounded-md bg-gray-400" name="thought" placeholder="what are you thinking about" cols="50"></textarea>
+    <button class="button bg-blue-500 hover:bg-blue-600 rounded-md text-gray-300 w-2/12 p-2 mt-1" disabled>publish</button>
+</form>
+
+<script>
+  let input = document.querySelector(".textarea")
+  let button = document.querySelector(".button")
+
+  input.addEventListener("input", stateHandle)
+
+  function stateHandle() {
+    console.log("event fired")
+    if (document.querySelector(".textarea").value.trim() !== "") {
+      button.removeAttribute("disabled")
+    }
+  }
+</script>
 
 <style>
   textarea {
