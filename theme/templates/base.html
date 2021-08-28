@@ -23,6 +23,7 @@
   >
     <header
       class="
+        header
         sticky
         top-0
         z-40
@@ -90,10 +91,22 @@
         {% block content %} {% endblock content %}
       </section>
     </div>
-    <script
-      src="https://kit.fontawesome.com/a5f7e441d1.js"
-      crossorigin="anonymous"
-    ></script>
+
+    <script>
+      const header = document.querySelector('.header')
+
+      var lastScrollTop = 0
+
+      window.addEventListener('scroll', () => {
+        if (this.oldScroll > this.scrollY) {
+          header.classList.add('sticky')
+        } else {
+          header.classList.remove('sticky')
+        }
+        this.oldScroll = this.scrollY
+      })
+    </script>
+
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
   </body>
 </html>
