@@ -18,7 +18,8 @@
   <body
     class="bg-gray-600 leading-normal tracking-normal"
     style="font-family: 'Noto Sans KR', sans-serif"
-    hx-get="/" hx-trigger="every 45s"
+    hx-get="/"
+    hx-trigger="every 45s"
   >
     <header
       class="
@@ -89,6 +90,10 @@
         {% block content %} {% endblock content %}
       </section>
     </div>
+    <script
+      src="https://kit.fontawesome.com/a5f7e441d1.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
   </body>
 </html>

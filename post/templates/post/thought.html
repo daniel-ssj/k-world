@@ -6,7 +6,17 @@
   hx-swap="afterend"
   {% endif %}
 >
-  <div class="bg-gray-500 p-2">{{thought.author}}</div>
+  <div class="bg-gray-500 p-2 flex justify-between">
+    <span>{{thought.author}}</span>
+    {% if thought.author == request.user %}
+      <span class="hover:cursor-pointer"
+      hx-get={% url 'post:delete_thought' thought.id %}
+      hx-trigger="click"
+      >
+        delete
+      </span>
+    {% endif %}
+  </div>
   <div class="p-2">
     <h1>{{thought.thought}}</h1>
   </div>

@@ -16,6 +16,12 @@ def thought_create_view(request):
 
 
 @login_required
+def thought_delete_view(request, id):
+    if(request.method == 'GET'):
+        thought: Thought = Thought.objects.get(pk=id)
+        thought.delete()
+
+@login_required
 def index_view(request):
     thoughts_list = Thought.objects.all().order_by('-created_at')
 
