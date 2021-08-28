@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from post.models import Thought
 
@@ -12,14 +14,20 @@ def thought_create_view(request):
 
         Thought.objects.create(thought=thought, author=request.user)
 
-        return redirect("/")
+        return redirect('/')
 
 
 @login_required
 def thought_delete_view(request, id):
-    if(request.method == 'GET'):
+    if(request.method == 'POST'):
         thought: Thought = Thought.objects.get(pk=id)
         thought.delete()
+
+        headers = {
+            'HX-Redirect': reverse('post:index')
+        }
+
+        return HttpResponse('Success', headers=headers)
 
 @login_required
 def index_view(request):
