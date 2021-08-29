@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w-screen">
+  {% include 'post/thought.html' with thought=thought %}
+  <h1 class="text-black text-xl">Comments</h1>
+  {% include 'post/create_comment.html' with thought=thought%}
+  {% include 'post/comments.html' with comments=comments %}
+</div>
+{% endblock %}

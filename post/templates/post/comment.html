@@ -1,0 +1,18 @@
+<div
+  class="bg-gray-300 p-1 mt-2 mb-2 rounded-l"
+>
+  <div class="bg-gray-500 p-2 flex justify-between">
+    <span>{{comment.author}}</span>
+    {% if comment.author == request.user %}
+      
+    {% endif %}
+  </div>
+  <div class="p-2">
+    <h1>{{comment.comment}}</h1>
+  </div>
+  <div class="flex justify-end p-2">
+    <dfn class="not-italic" title="{{comment.created_at}}">
+        {{comment.get_time_ago}}
+    </dfn>
+  </div>
+</div>

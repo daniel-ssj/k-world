@@ -1,0 +1,5 @@
+<div id="comments">
+    {% for comment in comments %}
+        {% include 'post/comment.html' with comment=comment %}
+    {% endfor %}
+</div>

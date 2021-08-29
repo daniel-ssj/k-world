@@ -1,5 +1,5 @@
-<div
-  class="bg-gray-300 p-1 mt-2 mb-2 rounded-l"
+<article
+  class="thought{{thought.id}} bg-gray-300 p-1 mt-2 mb-2 rounded-l"
   {% if thoughts.has_next and forloop.last %}
   hx-get="/?page={{ thoughts.next_page_number }}"
   hx-trigger="revealed"
@@ -26,4 +26,12 @@
         {{thought.get_time_ago}}
     </dfn>
   </div>
-</div>
+</article>
+
+<script>
+  thought = document.querySelector(".thought{{thought.id}}")
+
+  thought.addEventListener('click', () => {
+    window.location = "{% url 'post:thought_detail' thought.id %}"
+  })
+</script>

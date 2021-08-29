@@ -4,23 +4,37 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from post.models import Thought
+from post.models import Comment, Thought
 
 
 @login_required
 def thought_create_view(request):
     if(request.method == 'POST'):
-        thought: str = request.POST.get('thought')
+        thoughts = Thought.objects.all().order_by('-created_at')
+        thought = request.POST.get('thought')
 
         Thought.objects.create(thought=thought, author=request.user)
 
-        return redirect('/')
+        return render(request, 'post/thoughts.html', {'thoughts': thoughts})
+
+
+@login_required
+def thought_detail_view(request, id):
+    thought = Thought.objects.get(pk=id)
+    comments = thought.comments.all().order_by('-created_at')
+
+    context = {
+        'thought': thought,
+        'comments': comments
+    }
+
+    return render(request, 'post/thought_detail.html', context)
 
 
 @login_required
 def thought_delete_view(request, id):
     if(request.method == 'POST'):
-        thought: Thought = Thought.objects.get(pk=id)
+        thought = Thought.objects.get(pk=id)
         thought.delete()
 
         headers = {
@@ -28,6 +42,20 @@ def thought_delete_view(request, id):
         }
 
         return HttpResponse('Success', headers=headers)
+
+
+@login_required
+def comment_create_view(request, id):
+    if(request.method == 'POST'):
+        thought = Thought.objects.get(pk=id)
+        comment = request.POST.get('comment')
+
+        thought.comments.create(comment=comment, author=request.user)
+
+        comments = thought.comments.all().order_by('-created_at')
+
+        return render(request, 'post/comments.html', {'comments': comments})
+
 
 @login_required
 def index_view(request):

@@ -1,0 +1,33 @@
+<form hx-post={% url 'post:create_comment' thought.id %}
+      hx-target="#comments"
+      hx-swap="outerHTML"
+      class="flex flex-col"
+>
+    {% csrf_token %}
+    <textarea class="comment rounded-md bg-gray-400" name="comment" placeholder="write a comment" cols="50"></textarea>
+    <button class="button bg-blue-500 hover:bg-blue-600 rounded-md text-gray-300 w-2/12 p-2 mt-1" disabled>publish</button>
+</form>
+
+<script>
+  let input = document.querySelector(".comment")
+  let button = document.querySelector(".button")
+
+  input.addEventListener("input", stateHandle)
+
+  function stateHandle() {
+    console.log("event fired")
+    if (document.querySelector(".comment").value.trim() === "") {
+      button.setAttribute("disabled", "disabled")
+    } else {
+      button.removeAttribute("disabled")
+    }
+  }
+</script>
+
+<style>
+  textarea {
+    min-height: 42px;
+    max-height: 342px;
+    height: 42px;
+  }
+</style>

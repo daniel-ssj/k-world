@@ -1,3 +1,5 @@
-{% for thought in thoughts %}
-    {% include 'post/thought.html' with thought=thought thoughts=thoughts %}
-{% endfor %}
+<div id="thoughts">
+    {% for thought in thoughts %}
+        {% include 'post/thought.html' with thought=thought thoughts=thoughts %}
+    {% endfor %}
+</div>
